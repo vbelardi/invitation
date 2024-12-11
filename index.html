@@ -6,36 +6,53 @@
     <title>Mon Histoire</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
         }
         header {
-            background-color: #333;
+            background-color: #6c5ce7;
             color: white;
-            padding: 10px 20px;
+            padding: 20px;
             text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         nav {
-            background-color: #444;
-            overflow: hidden;
+            background-color: #4b4b8f;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         nav a {
-            float: left;
-            display: block;
+            margin: 0 15px;
             color: white;
-            text-align: center;
-            padding: 14px 20px;
             text-decoration: none;
+            font-weight: bold;
+            padding: 14px 20px;
+            transition: background-color 0.3s, transform 0.3s;
         }
         nav a:hover {
-            background-color: #575757;
+            background-color: #37375e;
+            border-radius: 5px;
+            transform: scale(1.1);
         }
         .content {
             padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .hidden {
             display: none;
+        }
+        .content img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
         }
     </style>
     <script>
@@ -60,21 +77,25 @@
     <div id="france" class="content">
         <h2>France</h2>
         <p>Mon histoire en France commence dans les petites ruelles de Paris...</p>
+        <img src="https://source.unsplash.com/800x400/?paris,france" alt="Paris">
     </div>
 
     <div id="suisse" class="content hidden">
         <h2>Suisse</h2>
         <p>La Suisse m'a offert ses montagnes majestueuses et son innovation technologique...</p>
+        <img src="https://source.unsplash.com/800x400/?switzerland,mountains" alt="Suisse">
     </div>
 
     <div id="italie" class="content hidden">
         <h2>Italie</h2>
         <p>En Italie, j'ai découvert la passion pour la culture et la gastronomie...</p>
+        <img src="https://source.unsplash.com/800x400/?italy,rome" alt="Italie">
     </div>
 
     <div id="allemagne" class="content hidden">
         <h2>Allemagne</h2>
         <p>Mon passage en Allemagne a été marqué par une immersion dans la rigueur et l'efficacité...</p>
+        <img src="https://source.unsplash.com/800x400/?germany,berlin" alt="Allemagne">
     </div>
 </body>
 </html>
