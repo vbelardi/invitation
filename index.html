@@ -1,37 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Simple Website</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Mon Histoire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #444;
+            overflow: hidden;
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #575757;
+        }
+        .content {
+            padding: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        function showContent(country) {
+            document.querySelectorAll('.content').forEach(section => section.classList.add('hidden'));
+            document.getElementById(country).classList.remove('hidden');
+        }
+    </script>
 </head>
 <body>
     <header>
-        <h1>Welcome fdppp</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
+        <h1>Mon Histoire</h1>
+        <p>Explorez mon parcours à travers différents pays.</p>
     </header>
-    
-    <main>
-        <section>
-            <h2>About Me</h2>
-            <p>This is a simple website where I introduce myself and share a little about my journey as a web developer!</p>
-        </section>
+    <nav>
+        <a href="#" onclick="showContent('france')">France</a>
+        <a href="#" onclick="showContent('suisse')">Suisse</a>
+        <a href="#" onclick="showContent('italie')">Italie</a>
+        <a href="#" onclick="showContent('allemagne')">Allemagne</a>
+    </nav>
 
-        <section>
-            <h2>My Hobbies</h2>
-            <p>I enjoy coding, playing video games, and reading books about technology.</p>
-        </section>
-    </main>
+    <div id="france" class="content">
+        <h2>France</h2>
+        <p>Mon histoire en France commence dans les petites ruelles de Paris...</p>
+    </div>
 
-    <footer>
-        <p>Created by Me &copy; 2024</p>
-    </footer>
+    <div id="suisse" class="content hidden">
+        <h2>Suisse</h2>
+        <p>La Suisse m'a offert ses montagnes majestueuses et son innovation technologique...</p>
+    </div>
+
+    <div id="italie" class="content hidden">
+        <h2>Italie</h2>
+        <p>En Italie, j'ai découvert la passion pour la culture et la gastronomie...</p>
+    </div>
+
+    <div id="allemagne" class="content hidden">
+        <h2>Allemagne</h2>
+        <p>Mon passage en Allemagne a été marqué par une immersion dans la rigueur et l'efficacité...</p>
+    </div>
 </body>
 </html>
