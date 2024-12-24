@@ -3,40 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Histoire</title>
+    <title>Raf and Val</title>
+    <link href="https://fonts.googleapis.com/css2?family=The+Girl+Next+Door&display=swap" rel="stylesheet">
+
     <style>
         body {
-            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
+            background-color: #FFE3ED;
             color: #333;
+            font-family: 'The Girl Next Door', sans-serif;
+            transition: background-color 0.5s ease;
         }
         header {
-            background-color: #6c5ce7;
+            background-color: #ff819f;
             color: white;
-            padding: 20px;
+            padding: 5px;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1em;
         }
-        nav {
-            background-color: #4b4b8f;
-            display: flex;
-            justify-content: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        nav a {
-            margin: 0 15px;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 14px 20px;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-        nav a:hover {
-            background-color: #37375e;
-            border-radius: 5px;
-            transform: scale(1.1);
+        header:hover {
+            background-color: #ea436a;
         }
         .content {
             padding: 20px;
@@ -45,57 +35,366 @@
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #ff819f;
+            color: white;
+            margin-top: 40px;
+            transition: background-color 0.3s ease;
+        }
+        footer:hover {
+            background-color: #ea436a;
+        }
+        button {
+            background-color: #b3a4f7;
+            color: white;
+            border: none;
+             padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 10px 5px;
+            font-family: 'The Girl Next Door', sans-serif;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        button:hover {
+            background-color: #cc80f7;
+            transform: scale(1.1);
+        }
+
+        ol{
+ 
+            display: table;
+            margin: 0 auto;
+        }
+        .mood-option {
+            margin: 10px;
+            padding: 10px;
+            border: 2px solid #9b59b6;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
         }
         .hidden {
             display: none;
         }
-        .content img {
-            max-width: 100%;
+        #moodImage {
+            max-width: 30%;
+            margin-top: 20px;
             border-radius: 10px;
-            margin-top: 10px;
+        }
+        .wishlist-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .wishlist-item img {
+            width: 100px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .faq-item {
+            margin: 10px 0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        a {
+            color: #00796b;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #004d40;
         }
     </style>
     <script>
-        function showContent(country) {
+        function toggleSection(sectionId) {
             document.querySelectorAll('.content').forEach(section => section.classList.add('hidden'));
-            document.getElementById(country).classList.remove('hidden');
+            document.getElementById(sectionId).classList.remove('hidden');
         }
+
+        // Pour afficher l'image correspondant à l'humeur sélectionnée
+        function displayMoodImage(mood, imageUrl) {
+            const moodImage = document.getElementById('moodImage');
+            const moodText = document.getElementById('moodText');
+            const moodSentences = {
+                Sad: "Tak a shower and eat something you will feel better. Or call me and fart on the phone, I know you would like to fart on me.",
+                Stressed: "Think about Mexico, stress doesn't exist, it's just in your head. Everything will be okay.",
+                "Missing me": "Yes you should miss me, look how pretty I am on this picture. I miss you too, I can't wait to see you.",
+                "Angry (at someone else)": "Fuck him, we are a team and we are the best.",
+                "Angry (at me)": "I'm so sorry for what I did, I'm just a chill guy...",
+                Hungry: "Very soon your french chef will cook something for you.",
+                Tired: "You will never be more tired than in this moment, come on, you can do it my love.",
+                "Feeling lonely": "It's 6am baby let me sleep please...",
+                "Doubting of yourself": "You are capable of amazing things, you are intelligent and I am so proud of you. I believe in you.",
+                "Doubting of us": "I will never let you go. I love you more than everything and I will do everything to keep you in my life.",
+                "No motivation": "Everthing will be okay, I am always here for you, and I will always be. Take a break, you deserve it."
+            };           
+            moodImage.src = imageUrl;
+            moodImage.classList.remove('hidden');
+            moodText.textContent = moodSentences[mood];
+            moodText.classList.remove('hidden');
+        }
+
+        // Rendu des options d'humeur avec leurs images correspondantes
+        function renderMood() {
+            const moods = {
+                Sad: './images/stupid.jpg',
+                Stressed: './images/oaxaca.jpg',
+                "Missing me": './images/bg.jpg',
+                "Angry (at someone else)": './images/fuck.jpg',
+                "Angry (at me)": './images/chill_guy.jpg',
+                Hungry: './images/ratatouille.jpg',
+                Tired: './images/tired.jpg',
+                "Feeling lonely": './images/sleep.jpg',
+                "Doubting of yourself": './images/graduation.jpg',
+                "Doubting of us": './images/puebla.jpg',
+                "No motivation": './images/fleurs.jpg'
+
+            };
+
+            const moodContainer = document.getElementById('moodOptions');
+            moodContainer.innerHTML = '';
+
+            for (const [mood, imageUrl] of Object.entries(moods)) {
+                const button = document.createElement('button');
+                button.className = 'mood-option';
+                button.innerText = mood.charAt(0).toUpperCase() + mood.slice(1);
+                button.onclick = () => displayMoodImage(mood, imageUrl);
+                moodContainer.appendChild(button);
+            }
+        }
+
+        // Fonction pour ajouter un élément à la liste de souhaits
+        function saveWishList() {
+            const item = document.getElementById('wishlistItem').value;
+            const imgUrl = document.getElementById('wishlistImage').value;
+            if (!item || !imgUrl) return;
+
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            wishlist.push({ item, imgUrl });
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            renderWishList();
+        }
+
+        function startClock() {
+            const startDate = new Date('2023-11-21T00:00:00');
+            setInterval(() => {
+                const now = new Date();
+                const diff = new Date(now - startDate);
+                const yearnow = now.getUTCFullYear();
+                const yearmet = startDate.getUTCFullYear();
+                const months = diff.getUTCMonth();
+                const days = diff.getUTCDate() - 1;
+                const hours = diff.getUTCHours();
+                const minutes = diff.getUTCMinutes();
+                const seconds = diff.getUTCSeconds();
+                document.getElementById('clock').innerText = `You have been my girlriend for ${yearnow - yearmet} year(s), ${months} months, ${days} days, ${hours} hours, ${minutes} min and ${seconds} sec`;
+            }, 1000);
+        }
+
+        // Fonction pour afficher la liste de souhaits
+        function renderWishList() {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const displayArea = document.getElementById('wishlistDisplay');
+            displayArea.innerHTML = '';
+            wishlist.forEach((wish, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'wishlist-item';
+                const img = document.createElement('img');
+                img.src = wish.imgUrl;
+                img.alt = wish.item;
+                const text = document.createElement('p');
+                text.textContent = wish.item;
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Supprimer';
+                deleteBtn.onclick = () => deleteWish(index);
+                itemDiv.appendChild(img);
+                itemDiv.appendChild(text);
+                itemDiv.appendChild(deleteBtn);
+                displayArea.appendChild(itemDiv);
+            });
+        }
+
+        // Fonction pour supprimer un élément de la liste de souhaits
+        function deleteWish(index) {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            wishlist.splice(index, 1);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            renderWishList();
+        }
+
+        // Affichage de la section FAQ
+        function renderFAQ() {
+            const faq = [
+                { question: "Do you love me ?", answer: "More than everything, you are the only thing important for me in this world." },
+                { question: "Am I pretty ?", answer: "The answer to this question will always be yes. No matter how you are dressed, if you juste woke up, if you are sick, mad at me or anything, you will still be the prettiest girl on this earth." },
+                { question: "Will you marry me one day ?", answer: "I want to travel all arround the world with you to find your favorite place on this earth. When I will find it, I will put me knee on the ground and ask you to spend all your life with me." },
+                { question: "Am I a good girlfriend ?", answer: "I could not dream about better than you. You have everything I always wanted and needed, I would not replace you for anyone in this world." },
+                { question: "Are you proud of me ?", answer: "You are intelligent, caring, courageous, strong, fast-learner, independant, generous and creative. I can't believe that you are my girlfriend. You did so many things in your life that impress me, of course I am proud of you, I'm your biggest fan." },
+            ];
+
+            const faqContainer = document.getElementById('faqList');
+            faqContainer.innerHTML = '';
+
+            faq.forEach(faqItem => {
+                const faqDiv = document.createElement('div');
+                faqDiv.className = 'faq-item';
+                faqDiv.innerHTML = `<strong>${faqItem.question}</strong><p>${faqItem.answer}</p>`;
+                faqContainer.appendChild(faqDiv);
+            });
+        }
+
+        // Initialisation de toutes les sections lorsque le DOM est prêt
+        document.addEventListener('DOMContentLoaded', function() {
+            startClock();
+            renderMood();
+            renderWishList();
+            renderFAQ();
+            formatDate();
+        });
+
+        function formatDate() {
+            const dateElement = document.getElementById('date');
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const today = new Date();
+            dateElement.textContent = today.toLocaleDateString(undefined, options);
+        }
+
+        const goals = [
+            "Travel to Colombia together and do your internship",
+            "Do your exchange to Buenos Aires while I do my internship",
+            "Go to Patagonia together",
+            "Visit the seven wonders of the world together",
+            "Finish our studies",
+            "Find a job in the same city",
+            "Buy Roberto",
+            "Go back to Mexico together",
+            "Travel to Asia together",
+            "Buy our house",
+            "Marriage",
+        ];
+
+        function saveGoalsState() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const goalsState = Array.from(checkboxes).map(checkbox => checkbox.checked);
+            localStorage.setItem('goalsState', JSON.stringify(goalsState));
+        }
+
+        function loadGoalsState() {
+            const savedState = JSON.parse(localStorage.getItem('goalsState')) || [];
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach((checkbox, index) => {
+                if (savedState[index]) {
+                    checkbox.checked = true;
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const goalsList = document.getElementById('future');
+            goals.forEach(goal => {
+                const listItem = document.createElement('li');
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.addEventListener('change', saveGoalsState);
+                const label = document.createElement('label');
+                label.textContent = goal;
+
+                listItem.appendChild(checkbox);
+                listItem.appendChild(label);
+                goalsList.appendChild(listItem);
+            });
+
+            loadGoalsState();
+        });
     </script>
 </head>
 <body>
-    <header>
-        <h1>Mon Histoire</h1>
-        <p>Explorez mon parcours à travers différents pays.</p>
+    <header onclick="toggleSection('home')">
+        <h1>My blog for you</h1>
+        <div id="clock"></div>
+        <p> And my life has never been that perfect !!</p>
     </header>
-    <nav>
-        <a href="#" onclick="showContent('france')">France</a>
-        <a href="#" onclick="showContent('suisse')">Suisse</a>
-        <a href="#" onclick="showContent('italie')">Italie</a>
-        <a href="#" onclick="showContent('allemagne')">Allemagne</a>
-    </nav>
 
-    <div id="france" class="content">
-        <h2>France</h2>
-        <p>Mon histoire en France commence dans les petites ruelles de Paris...</p>
-        <img src="https://source.unsplash.com/800x400/?paris,france" alt="Paris">
+    <div id="home" class="content">
+        <button onclick="toggleSection('music')">Music Lover</button>
+        <button onclick="toggleSection('wishlist')">Your Wish List</button>
+        <button onclick="toggleSection('future')">Our futur together</button>
+        <button onclick="toggleSection('mood')">In a bad Mood ?</button>
+        <button onclick="toggleSection('faq')">FAQ</button>
+
+        
+        <p>Things I love about you :</p>
+        <ol>
+            <li>Your face</li>
+            <li>Your smile</li>
+            <li>Your hair</li>
+            <li>Your lips</li>
+            <li>Your nose</li>
+            <li>Your eyes</li>
+            <li>Your body</li>
+            <li>Your legs</li>
+            <li>Your ass (hehe)</li>
+            <li>Your tete (hehe) </li>
+            <li>Your voice</li>
+            <li>Your kindness</li>
+            <li>The way you dress</li>
+            <li>That you talk a lot</li>
+            <li>Your small attentions to me</li>
+            <li>Your humour</li>
+            <li>The support you always give me</li>
+            <li>The way you know me</li>
+            <li>That you always put me first</li>
+            <li>You always try to understand me</li>
+            <li>You always compliment me</li>
+            <li>Your artistic mind</li>
+
+        </ol>
+
+
     </div>
 
-    <div id="suisse" class="content hidden">
-        <h2>Suisse</h2>
-        <p>La Suisse m'a offert ses montagnes majestueuses et son innovation technologique...</p>
-        <img src="https://source.unsplash.com/800x400/?switzerland,mountains" alt="Suisse">
+    <div id="music" class="content hidden">
+        <h2>Because music is one on my love language.</h2>
+        <p>I listened thousands of songs in my life, each of them represents a part of me, a part of my life. More time flies, more songs make me think about you, showing all you represents for me and the part you take in my life. </p>
+        <p>We are speaking together four different languages, our love is expressed in all parts of the world and by so many people.</p>
+        <p>I wanted to group all the musics in the world that make me think about you or that represent what I feel for you.</p>
+        <a href="https://open.spotify.com/playlist/6pM9opabJ34XwjH9lvQvMT?si=b3knSRj6RH2D5Llw8Hpcdw&pi=e-sXALy37KSPaz" target="_blank">This is the proof that you are all my world.</a>
     </div>
 
-    <div id="italie" class="content hidden">
-        <h2>Italie</h2>
-        <p>En Italie, j'ai découvert la passion pour la culture et la gastronomie...</p>
-        <img src="https://source.unsplash.com/800x400/?italy,rome" alt="Italie">
+    <div id="wishlist" class="content hidden">
+        <h2>Let me know what you want, you could get some surprises...</h2>
+        <input type="text" id="wishlistItem" placeholder="Name and brand">
+        <input type="text" id="wishlistImage" placeholder="URL of the image">
+        <button onclick="saveWishList()">Add</button>
+        <div id="wishlistDisplay"></div>
     </div>
 
-    <div id="allemagne" class="content hidden">
-        <h2>Allemagne</h2>
-        <p>Mon passage en Allemagne a été marqué par une immersion dans la rigueur et l'efficacité...</p>
-        <img src="https://source.unsplash.com/800x400/?germany,berlin" alt="Allemagne">
+    <div id="future" class="content hidden">
+        <h2>What are our next steps ?</h2>
     </div>
+
+    <div id="mood" class="content hidden">
+        <h2>In case you need some reconfort and I'm not next to you...</h2>
+        <div id="moodOptions"></div>
+        <img id="moodImage" class="hidden" alt="Mood Image">
+        <p id="moodText" class="hidden"></p>
+    </div>
+
+    <div id="faq" class="content hidden">
+        <h2>Frequently Asked Question</h2>
+        <div id="faqList"></div>
+    </div>
+
+    <footer>
+        <p>For you, with all my love.</p>
+    </footer>
 </body>
 </html>
